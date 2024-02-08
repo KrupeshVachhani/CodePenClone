@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
+import { Home } from "./Container";
+import { auth } from "./config/firebase.config";
 
-function App() {
+const App = () => {
+  const navigate = useNavigate();
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((userCred) => {
+      if (userCred) {
+        console.log(userCred?.providerData[0]);
+      } else {
+        navigate("/home/auth", { replace: true });
+      }
+    });
+  });
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="w-screen h-screen flex item-start justify-start overflow-hidden">
+      <Routes>
+        <Route path="/home/*" element={<Home />} />
+
+        {/* default path */}
+        <Route path="*" element={<Navigate to={"/home"} />} />
+      </Routes>
     </div>
   );
-}
+};
 
 export default App;
