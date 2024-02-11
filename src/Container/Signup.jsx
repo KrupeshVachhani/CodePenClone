@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { UserAuthInput } from "../components";
-import { FaGithub, FaEnvelope } from "react-icons/fa";
+import { FaEnvelope } from "react-icons/fa";
 import { MdPassword } from "react-icons/md";
 import { FcGoogle } from "react-icons/fc";
 import { motion, AnimatePresence } from "framer-motion";
@@ -9,7 +9,7 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { auth } from "../config/firebase.config";
-import { signInWithGitHub, signInWithGoogle } from "../utils/helpers";
+import { signInWithGoogle } from "../utils/helpers";
 import { fadeInOut } from "../Aminations";
 
 const Signup = () => {
@@ -30,23 +30,21 @@ const Signup = () => {
           password
         );
         console.log(userCred);
-
       } catch (error) {
         console.log(error.message);
-        if(error.message.includes("email-already-in-use")){
-          setAlertMessage("Email already in use")
-          setAlertStatus(true)
+        if (error.message.includes("email-already-in-use")) {
+          setAlertMessage("Email already in use");
+          setAlertStatus(true);
           setTimeout(() => {
-            setAlertStatus(false)
+            setAlertStatus(false);
           }, 3000);
-        }else if (error.message.includes("weak-password")) {
+        } else if (error.message.includes("weak-password")) {
           setAlertMessage("Password should be at least 6 characters");
           setAlertStatus(true);
           setTimeout(() => {
             setAlertStatus(false);
           }, 3000);
-        } 
-
+        }
       }
     }
   };
@@ -151,21 +149,6 @@ const Signup = () => {
           >
             <FcGoogle className="text-lg pr-3 w-10 h-9" />
             <p className="text-white ">Sign up with Google</p>
-          </motion.div>
-
-          <div className="w-full flex items-center justify-center gap-6">
-            <div className="w-full h-0.5 bg-gray-600"></div>
-            <p className="text-gray-400">or</p>
-            <div className="w-full h-0.5 bg-gray-600"></div>
-          </div>
-
-          <motion.div
-            onClick={signInWithGitHub}
-            whileTap={{ scale: 0.9 }}
-            className="w-full flex items-center justify-center py-3 rounded-xl hover:bg-[rgba(256,256,256,0.3)] cursor-pointer bg-[rgba(256,256,256,0.2)]"
-          >
-            <FaGithub className=" text-white text-lg pr-3 w-10 h-9" />
-            <p className="text-white ">Sign up with Github</p>
           </motion.div>
         </div>
       </div>
