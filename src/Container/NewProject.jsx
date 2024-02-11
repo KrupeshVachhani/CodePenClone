@@ -9,7 +9,7 @@ import logo from "../assets/logo.png";
 import { AnimatePresence, motion } from "framer-motion";
 import { MdCheck, MdEdit } from "react-icons/md";
 import { useSelector } from "react-redux";
-import { UserProfile, Alert, Spinner } from "../components";
+import { UserProfile, Alert } from "../components";
 import { doc, setDoc } from "firebase/firestore";
 import { db } from "../config/firebase.config";
 import { useNavigate } from "react-router-dom";
