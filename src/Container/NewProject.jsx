@@ -28,26 +28,28 @@ const NewProject = () => {
 
   useEffect(() => {
     updateOutput();
+    // eslint-disable-next-line
   }, [html, css, js]);
 
   const updateOutput = () => {
     const combinedCode = `
-        <html>
-            <head>
-                <style>
-                ${css}
-                </style>
-            </head>
-            <body>
-                ${html}
-                <script>
-                ${js}
-                </script>
-            </body>
-        </html>
-        `;
+      <html>
+          <head>
+              <style>
+              ${css}
+              </style>
+          </head>
+          <body>
+              ${html}
+              <script>
+              ${js}
+              </script>
+          </body>
+      </html>
+      `;
     setOutput(combinedCode);
   };
+
   const saveProgram = async () => {
     const confirmSave = window.confirm(
       `Are you sure you want to save this project with the title "${title}" & this code? Once it is saved, you cannot edit it again.`
@@ -72,10 +74,9 @@ const NewProject = () => {
         // Show success alert
         setAlert(true);
         setTimeout(() => setAlert(false), 2000);
-        
+
         // Navigate to home screen after saving
         setTimeout(() => navigate("/home/projects"), 1000);
-        
       } catch (err) {
         console.log(err);
       }
@@ -96,7 +97,11 @@ const NewProject = () => {
         <header className="w-full flex items-center justify-between px-8 py-4">
           <div className="flex items-center justify-center gap-6">
             <Link to={"/home/projects"}>
-              <img className="w-32 h-auto object-contain" src={logo} />
+              <img
+                className="w-32 h-auto object-contain"
+                src={logo}
+                alt="Logo"
+              />
             </Link>
 
             <div className="flex flex-col items-start justify-start">

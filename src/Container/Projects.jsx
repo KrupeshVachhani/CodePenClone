@@ -23,7 +23,7 @@ const Projects = () => {
     } else {
       setFilterd(null);
     }
-  }, [searchTerm]);
+  }, [searchTerm, projects]);
   return (
     <div className="w-full py-6 flex items-center justify-center gap-6 flex-wrap">
       {filtered ? (

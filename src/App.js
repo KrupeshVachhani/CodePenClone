@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
-import { Home, NewProject, NotValidScreen,Profile } from "./Container"; // Import the NotValidScreenSize component
+import { Home, NewProject, NotValidScreen } from "./Container"; // Import the NotValidScreenSize component
 import { auth, db } from "./config/firebase.config";
 import { collection, doc, orderBy, query, setDoc } from "firebase/firestore";
 import { Spinner } from "./components";
@@ -37,6 +37,7 @@ const App = () => {
 
     // Cleanup the listener event
     return () => unsubscribe();
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
@@ -50,6 +51,7 @@ const App = () => {
     });
 
     return () => unsubscribe();
+    // eslint-disable-next-line
   }, []);
 
   // Check window size on component mount and on window resize

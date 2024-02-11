@@ -1,17 +1,9 @@
 import React from "react";
-import { FaArrowDown } from "react-icons/fa";
 
 const NotValidScreenSize = () => {
   // Use a more accurate mobile check (consider media queries or viewport size)
   const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
-  const handleMinimize = () => {
-    // No scrolling functionality needed in this version
-  };
-
-  const handleSwitchToDesktop = () => {
-    // No switching functionality needed in this version
-  };
 
   return (
     <div className="w-screen h-screen flex items-center justify-center bg-black">
