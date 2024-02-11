@@ -1,18 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { motion } from "framer-motion";
-import { MdBookmark } from "react-icons/md";
+import { MdCopyAll } from "react-icons/md";
+import { ToastContainer, toast } from "react-custom-alert";
+import "react-custom-alert/dist/index.css";
 
 const Projects = () => {
   const projects = useSelector((state) => state.projects?.projects);
   const searchTerm = useSelector((state) =>
     state.searchTerm?.searchTerm ? state.searchTerm?.searchTerm : ""
   );
-  const [filtered, setFilterd] = useState(null);
+  const [filtered, setFiltered] = useState(null);
 
   useEffect(() => {
     if (searchTerm?.length > 0) {
-      setFilterd(
+      setFiltered(
         projects?.filter((project) => {
           const lowerCaseItem = project?.title.toLowerCase();
           return searchTerm
@@ -21,23 +23,47 @@ const Projects = () => {
         })
       );
     } else {
-      setFilterd(null);
+      setFiltered(null);
     }
   }, [searchTerm, projects]);
+
+  const copyToClipboard = (output) => {
+    navigator.clipboard.writeText(output);
+    toast.success("Code copied to clipboard successfully!");
+  };
+
   return (
     <div className="w-full py-6 flex items-center justify-center gap-6 flex-wrap">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        <ToastContainer floatingTime={2000} />
+      </motion.div>
       {filtered ? (
         <>
           {filtered &&
-            filtered.map((projects, index) => (
-              <ProjectCard key={projects.id} project={projects} index={index} />
+            filtered.map((project, index) => (
+              <ProjectCard
+                key={project.id}
+                project={project}
+                index={index}
+                copyToClipboard={copyToClipboard}
+              />
             ))}
         </>
       ) : (
         <>
           {projects &&
-            projects.map((projects, index) => (
-              <ProjectCard key={projects.id} project={projects} index={index} />
+            projects.map((project, index) => (
+              <ProjectCard
+                key={project.id}
+                project={project}
+                index={index}
+                copyToClipboard={copyToClipboard}
+              />
             ))}
         </>
       )}
@@ -45,7 +71,7 @@ const Projects = () => {
   );
 };
 
-const ProjectCard = ({ project, index }) => {
+const ProjectCard = ({ project, index, copyToClipboard }) => {
   return (
     <motion.div
       key={index}
@@ -103,8 +129,9 @@ const ProjectCard = ({ project, index }) => {
         <motion.div
           className="cursor-pointer ml-auto "
           whileTap={{ scale: 0.9 }}
+          onClick={() => copyToClipboard(project.output)}
         >
-          <MdBookmark className="text-primaryText text-3xl" />
+          <MdCopyAll className="text-primaryText text-3xl" />
         </motion.div>
       </div>
     </motion.div>

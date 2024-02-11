@@ -205,7 +205,7 @@ const NewProject = () => {
               split="vertical"
               minSize={300}
               maxSize={600}
-              defaultSize={400}
+              defaultSize={500}
               className="w-full h-full"
             >
               {/* html */}
@@ -236,8 +236,8 @@ const NewProject = () => {
               <SplitPane
                 split="vertical"
                 minSize={300}
-                maxSize={600}
-                defaultSize={400}
+                maxSize={800}
+                defaultSize={600}
                 className="w-full h-full"
               >
                 {/* css */}

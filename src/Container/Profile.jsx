@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 
 const Profile = () => {
   const user = useSelector((state) => state.user.user);
-
   return (
     <div className="min-h-screen flex items-center justify-center -m-10 ">
       <div className="w-full sm:max-w-md md:max-w-lg lg:max-w-xl  shadow-lg rounded-lg p-8 transform duration-200 ease-in-out">
