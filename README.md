@@ -26,6 +26,11 @@ Check out our project in action! Watch the full demo on YouTube:
 
 ---
 
+### 🚀 Deployed Application:
+Experience CodePenClone live: [CodePenClone](https://codepen-clone-ff3f4.web.app/)
+
+---
+
 ### 🚀 Getting Started:
 1. **Clone the Repository:**
     ```sh
